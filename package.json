@@ -1,0 +1,23 @@
+{
+  "name": "tokenminter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "inex.js",
+  "scripts": {
+    "test": "\"echo \\\"Not test specified\\\" && exit 1\""
+  },
+  "keywords": [
+    "NFT",
+    "token",
+    "minter",
+    "Hedera",
+    "DLT",
+    "Blockchain"
+  ],
+  "author": "Waylon Jepsen",
+  "license": "ISC",
+  "dependencies": {
+    "@hashgraph/sdk": "^2.0.17",
+    "dotenv": "8.2.0"
+  }
+}
