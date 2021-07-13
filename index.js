@@ -15,7 +15,7 @@ async function main() {
         .setTokenName("cookie") // The publicly visible name of the token
         .setTokenSymbol("CRUNCH") // The publicly visible token symbol
         .setDecimals(0) // For tokens of type NON_FUNGIBLE_UNIQUE - value must be 0
-        .setInitialSupply(0) //Must be 0 for NFTs
+        .setInitialSupply(10) // Max Suply of NFTs
         .setTreasuryAccountId(operatorID) // The account which will act as a treasury for the token. This account will receive the specified initial supply or the newly minted NFTs
         .setAdminKey(operatorKey) // The key which can perform update/delete operations on the token
         .setKycKey(operatorKey) // The key which can grant or revoke KYC of an account for the token's transactions. If empty, KYC is not required, and KYC grant or revoke operations are not possible
@@ -38,10 +38,10 @@ async function main() {
     console.log('New Token ID: ', newTokenId.toString());
     
     var mintNFT = await new TokenMintTransaction()
-        .setToken() // The Token for which to mint tokens. If token does not exist, transactions results in INVALID_TOKEN_ID
-        .setAmount() // Applicaable to tokenss of type FUNGIBLE_COMMON. The Amount to mint to the treasury Account. Amount must be a positive non-zero number represented in the lowesr denomination of the token. The new supply must be lower than 2^63.
-        .setMetadaata(); // Applicable to tokens of type NON_FUNGIBLE_UNIQUE. A list of metadata that are being created. Maximum allowed size of each metadata is 100 bytes
-    
+        .setToken(newTokenId) // The Token for which to mint tokens. If token does not exist, transactions results in INVALID_TOKEN_ID
+        .setAmount() // Applicaable to tokens of type FUNGIBLE_COMMON. The Amount to mint to the treasury Account. Amount must be a positive non-zero number represented in the lowesr denomination of the token. The new supply must be lower than 2^63.
+        .setMetadata(); // Applicable to tokens of type NON_FUNGIBLE_UNIQUE. A list of metadata that are being created. Maximum allowed size of each metadata is 100 bytes
+        // make and example of the meta-data
     var createNFTReceipt = await mintNFT.getReceipt(client);
 
 }
