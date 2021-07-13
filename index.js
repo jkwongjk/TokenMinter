@@ -34,8 +34,15 @@ async function main() {
 
     var createReceipt = await createTokenTx.getReceipt(client);
     var newTokenId = createReceipt.tokenId;
-
+    
     console.log('New Token ID: ', newTokenId.toString());
+    
+    var mintNFT = await new TokenMintTransaction()
+        .setToken() // The Token for which to mint tokens. If token does not exist, transactions results in INVALID_TOKEN_ID
+        .setAmount() // Applicaable to tokenss of type FUNGIBLE_COMMON. The Amount to mint to the treasury Account. Amount must be a positive non-zero number represented in the lowesr denomination of the token. The new supply must be lower than 2^63.
+        .setMetadaata(); // Applicable to tokens of type NON_FUNGIBLE_UNIQUE. A list of metadata that are being created. Maximum allowed size of each metadata is 100 bytes
+    
+    var createNFTReceipt = await mintNFT.getReceipt(client);
 
 }
 
